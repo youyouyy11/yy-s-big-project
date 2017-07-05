@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+	<property name="loggingRoot" value="/alidata/log/server" />
+	<property name="appName" value="benzhr-server" />
+	<property name="loggingCharset" value="UTF-8" />
+	<property name="maxSizeHour" value="720" />
+	<property name="patternFull" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss}] [%thread] %logger{80} - %msg%n" />
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<target>System.out</target>
+		<encoder>
+			<pattern>${patternFull}</pattern>
+			<charset>${loggingCharset}</charset>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${loggingRoot}/${appName}.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>${patternFull}</pattern>
+			<charset>${loggingCharset}</charset>
+		</encoder>
+		<prudent>false</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${loggingRoot}/${appName}.%d{yyyy-MM-dd-HH}.log.gz</fileNamePattern>
+			<maxHistory>${maxSizeHour}</maxHistory>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+	</appender>
+
+	<appender name="ErrorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${loggingRoot}/${appName}_error.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>${patternFull}</pattern>
+			<charset>${loggingCharset}</charset>
+		</encoder>
+		<prudent>false</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${loggingRoot}/${appName}_error.%d{yyyy-MM-dd-HH}.log.gz</fileNamePattern>
+			<maxHistory>${maxSizeHour}</maxHistory>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+	</appender>
+
+
+	<logger name="org.springframework" level="info" />
+	<logger name="com.benzhr.server" level="debug" />
+	<logger name="com.telecom.platform" level="debug" />
+	<logger name="com.benzyun" level="debug"/>
+	
+	<!--root log -->
+	<root level="INFO">
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="FILE"/>
+		<appender-ref ref="ErrorFile"/>
+	</root>
+
+</configuration>

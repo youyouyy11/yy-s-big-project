@@ -1,0 +1,14 @@
+classpath=$1
+launch=$2
+profile=$3
+
+#="-Dcom.sun.management.jmxremote.port=3334 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
+java_opts="$java_opts -server -Xms2048m -Xmx4096m -Xmn512m -Xss256K -XX:ReservedCodeCacheSize=64m"
+#java_opts="$java_opts -XX:+UseParallelGC -XX:+UseParallelOldGC -XX:ParallelGCThreads=2"
+#java_opts="$java_opts -XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+
+log_path="/alidata/log/benzhr-data-server-context.log"
+
+echo -e "execute `pwd`/laucher \n"
+echo -e "java $java_opts -cp $classpath $launch $profile >> $log_path 2>&1 & \n"
+java $java_opts -cp $classpath $launch $profile >> $log_path 2>&1 &
