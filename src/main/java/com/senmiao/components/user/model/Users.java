@@ -56,8 +56,17 @@ public class Users extends BaseModel{
 	@Column(length=60)
 	private String lastLoginIp;                      			//最后登录IP
 
+	@Column(length = 20)										//信用分
+	private String creditScore;
 
-	
+	public String getCreditScore() {
+		return creditScore;
+	}
+
+	public void setCreditScore(String creditScore) {
+		this.creditScore = creditScore;
+	}
+
 	public String getName() {
 		return name;
 	}

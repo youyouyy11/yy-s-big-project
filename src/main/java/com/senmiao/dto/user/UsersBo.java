@@ -18,6 +18,8 @@ public class UsersBo extends BaseBo<Users> {
 
 	private String time;
 
+	private String creditScore;
+
 	public String getTime() {
 		return time;
 	}
@@ -44,6 +46,14 @@ public class UsersBo extends BaseBo<Users> {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getCreditScore() {
+		return creditScore;
+	}
+
+	public void setCreditScore(String creditScore) {
+		this.creditScore = creditScore;
 	}
 
 	public void setName(String name) {

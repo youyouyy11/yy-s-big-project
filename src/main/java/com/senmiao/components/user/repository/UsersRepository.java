@@ -42,4 +42,7 @@ public interface UsersRepository extends BaseRepository<Users> {
     @Query("FROM Users u WHERE u.deleted = 0 ORDER BY u.timeCreated DESC")
     public List<Users> findAll();
 
+    @Query("FROM Users u WHERE u.deleted = 0 and u.creditScore > ?1 ORDER BY u.timeCreated DESC")
+    public List<Users> screenByCreditScore(String creditScore);
+
 }

@@ -88,5 +88,10 @@ public class UsersServiceImpl extends BaseServiceImpl<Users>implements UsersServ
         return null;
     }
 
+	@Override
+	public List<Users> screenByCreditScore(String creditScore) {
+		return repo.screenByCreditScore(creditScore);
+	}
+
 
 }

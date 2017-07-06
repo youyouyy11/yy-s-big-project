@@ -15,6 +15,8 @@ public interface UsersService extends BaseService<Users> {
 
     List<Users> multiSave(UsersForm form);
 
+    List<Users>screenByCreditScore(String creditScore);
+
 }
 
 

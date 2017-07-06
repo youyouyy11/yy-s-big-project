@@ -87,11 +87,17 @@ public class UserRest {
 		return new Result<List<UsersBo>>(200, "查询成功", bos);
 	}
 
-	@RequestMapping("/multiSave.json")					//多重保存
+	@RequestMapping("/multiSave.json")					//多重创建
 	@ResponseBody
 	public Result<List<UsersBo>> multiSave(@ModelAttribute UsersForm form){
 
 		return  new Result<>(200," 添加成功",new UsersList(srv.multiSave(form)).getList());		//输出用通过BO（list）
+	}
+
+	@RequestMapping("/screenByCreditScore")
+	@ResponseBody
+	public Result<List<UsersBo>> screenByCreditScore(@RequestParam String creditScore){
+		return new Result<>(200,"筛选成功",new UsersList(srv.screenByCreditScore(creditScore)).getList());
 	}
 
 
