@@ -4,11 +4,9 @@ import com.senmiao.components.user.model.Users;
 import com.telecom.data.jpa.domain.model.BaseModel;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by yy on 2017/7/6.
@@ -33,7 +31,11 @@ public class Salary extends BaseModel{
     private String theDate;
 
     @Column (length = 4)                //是否结算
-    private String alreadySattlement;
+    @Basic
+    @Type(
+            type = "org.hibernate.type.NumericBooleanType"
+    )
+    private Boolean alreadySattlement;
 
     @ManyToOne
     private Users users;
@@ -70,11 +72,11 @@ public class Salary extends BaseModel{
         this.theDate = theDate;
     }
 
-    public String getAlreadySattlement() {
+    public Boolean getAlreadySattlement() {
         return alreadySattlement;
     }
 
-    public void setAlreadySattlement(String alreadySattlement) {
+    public void setAlreadySattlement(Boolean alreadySattlement) {
         this.alreadySattlement = alreadySattlement;
     }
 

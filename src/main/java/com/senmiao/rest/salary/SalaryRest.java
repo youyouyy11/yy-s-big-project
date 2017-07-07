@@ -1,10 +1,11 @@
 package com.senmiao.rest.salary;
 
-import com.senmiao.components.salary.model.Salary;
 import com.senmiao.components.salary.search.SalarySearch;
 import com.senmiao.components.salary.service.SalaryService;
 import com.senmiao.dto.salary.SalaryBo;
+import com.senmiao.dto.salary.SalaryForm;
 import com.senmiao.dto.salary.SalaryList;
+import com.telecom.common.domain.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,6 +39,11 @@ public class SalaryRest {
     }
 
 
+    @RequestMapping("/save.json")
+    @ResponseBody
+    public Result<List<SalaryBo>> saveSalary(@ModelAttribute SalaryForm form){
+        return new Result<>(200, "保存成功",new SalaryList(srv.saveSalary(form)).getList());
+    }
 
 
 }
