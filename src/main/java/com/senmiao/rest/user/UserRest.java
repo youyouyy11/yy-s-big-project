@@ -94,7 +94,7 @@ public class UserRest {
 		return  new Result<>(200," 添加成功",new UsersList(srv.multiSave(form)).getList());		//输出用通过BO（list）
 	}
 
-	@RequestMapping("/screenByCreditScore")
+	@RequestMapping("/screenByCreditScore")				//排序筛选
 	@ResponseBody
 	public Result<List<UsersBo>> screenByCreditScore(@RequestParam String creditScore){
 		return new Result<>(200,"筛选成功",new UsersList(srv.screenByCreditScore(creditScore)).getList());
